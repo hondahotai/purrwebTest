@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css(slider)/style.css">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">1</div>
+            <div class="slide">2</div>
+            <div class="slide">3</div>
+            <div class="slide">4</div>
+            <div class="slide">5</div>
+            <div class="slide">6</div>
+            <div class="slide">7</div>
+            <div class="slide">8</div>
+            <div class="slide">9</div>
+            <div class="slide">10</div>
+        </div>
+    </div>
+
+    <div class="dots">
+
+    </div>
+
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+</div>
+</body>
+<script>
+
+    const SliderWrap = document.querySelector('.slider-container'),
+          Slider = document.querySelector('.slider'),
+        slide = document.querySelectorAll('.slide'),
+        prev = document.querySelector('#prevBtn'),
+        next  = document.querySelector('#nextBtn'),
+        dots = document.querySelector('.dots');
+
+    Slider.style.width = `${Slider.children.length * 100}%`;
+
+    let pos = 0;
+    let nextSlide = 0;
+    let i = 0;
+
+
+    for (let i = 0; i < Slider.children.length; i++) {
+        let dot = document.createElement('div');
+        dot.classList.add('dot');
+        dots.appendChild(dot);
+        dots.children[0].classList.add('active');
+    }
+
+
+
+    const dot = document.querySelectorAll('.dot');
+    let originalSlidesOrder = Array.from(document.querySelectorAll('.slide'));
+    let times = 0;
+
+    Array.from(dot).forEach((item, i) => {
+        item.addEventListener('click', (e) => {
+
+
+            let target = Array.from(dot).indexOf(e.target)+1;
+            let index;
+
+            if (!item.disabled) {
+                dot.forEach((item, i) => {
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        index = i+1;
+                        console.log(index);
+                        console.log(target);
+                    }
+                })
+                Array.from(dot).at(target-1).classList.add('active');
+            }
+
+
+            for (target; target < index; target++) {
+                prev.click();
+            }
+            for (target; target > index; target--) {
+                next.click();
+            }
+        })
+    })
+
+
+    function Next(nextSlide, pos) {
+
+        const id = setInterval(frame, 1);
+        function frame() {
+            if (nextSlide === pos) {
+                clearInterval(id);
+                BtnEnable();
+                dotEnable();
+            } else {
+                BtnDisable();
+                dotDisable ();
+                pos -= 3;
+                Slider.style.left = pos + 'px';
+            }
+        }
+    }
+
+    function Prev(nextSlide, pos) {
+
+        const id = setInterval(frame, 1);
+        function frame() {
+            if (nextSlide === pos) {
+                clearInterval(id);
+                BtnEnable();
+                dotEnable();
+            } else {
+                BtnDisable()
+                dotDisable ();
+                pos += 3;
+                Slider.style.left = pos + 'px';
+            }
+        }
+    }
+
+
+    // prev-plus   next-minus
+    next.addEventListener('click', (e) => {
+
+        nextSlide -= SliderWrap.offsetWidth;
+        pos = Slider.offsetLeft;
+
+        if (-((Slider.children.length - 2) * SliderWrap.offsetWidth) === pos) {
+            Slider.appendChild(Slider.firstElementChild);
+            nextSlide += SliderWrap.offsetWidth;
+            pos = pos + SliderWrap.offsetWidth;
+        }
+        if (-((Slider.children.length - 1) * SliderWrap.offsetWidth) === pos) {
+            Slider.appendChild(Slider.firstElementChild);
+            nextSlide += SliderWrap.offsetWidth;
+            pos = pos + SliderWrap.offsetWidth;
+        }
+        if (nextSlide === -(Slider.children.length-1) * SliderWrap.offsetWidth) {
+            Slider.appendChild(Slider.firstElementChild);
+            nextSlide += SliderWrap.offsetWidth;
+        }
+
+        dot.forEach(item => {
+            item.classList.remove('active');
+        });
+
+        i++;
+        if (i === dot.length) {
+            i = 0;
+        }
+
+        Array.from(dot).at(i).classList.add('active');
+
+
+        Next(nextSlide, pos);
+    });
+
+    prev.addEventListener('click', (e) => {
+
+        nextSlide += SliderWrap.offsetWidth;
+        pos = Slider.offsetLeft;
+
+        if (pos === 0) {
+            Slider.insertBefore(Slider.lastElementChild, Slider.firstElementChild);
+            nextSlide -= SliderWrap.offsetWidth;
+            pos = pos - SliderWrap.offsetWidth;
+        }
+        if (pos < 0) {
+            Slider.insertBefore(Slider.lastElementChild, Slider.firstElementChild);
+            nextSlide -= SliderWrap.offsetWidth;
+            pos = pos - SliderWrap.offsetWidth;
+        }
+
+        dot.forEach(item => {
+            item.classList.remove('active');
+        });
+        i--;
+        if (i === -dot.length) {
+            i = 0;
+        }
+
+        Array.from(dot).at(i).classList.add('active');
+
+        Prev(nextSlide, pos);
+    });
+
+
+    function BtnDisable() {
+        next.disabled = true;
+        prev.disabled = true;
+    }
+
+    function BtnEnable() {
+        next.disabled = false;
+        prev.disabled = false;
+    }
+    function dotDisable() {
+        dot.forEach(item => {
+            item.disabled = true;
+        })
+    }
+    function dotEnable() {
+        dot.forEach(item => {
+            item.disabled = false;
+        })
+    }
+
+</script>
+</html>

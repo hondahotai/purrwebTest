@@ -1,0 +1,93 @@
+.awards {
+  padding: 100px 0 100px 0;
+  background: #F5F5F5;
+}
+
+.awards__heading {
+  display: flex;
+  padding: 60px 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  border-radius: 60px;
+  border: 1px solid var(--grayscale-04, #CFCFCF);
+  margin-bottom: 100px;
+}
+
+.awards__title {
+  color: #000;
+  text-align: center;
+  font-feature-settings: 'liga' off;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 106%;
+}
+
+.awards__title_big {
+  width: 822px;
+  text-align: start;
+  font-size: 96px;
+}
+
+.awards__subtitle {
+  width: 537px;
+  color:#000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 24px */
+}
+
+.awards-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 100px;
+}
+.awards-inner {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.awards-socials {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.awards-socials__background {
+  display: flex;
+  width: 90px;
+  height: 90px;
+  padding: 22.635px 22.094px 22.094px 22.635px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 226px;
+  background: #954CED;
+  &:nth-child(1) {
+    position: relative;
+    top: 34px;
+  }
+  &:nth-child(2) {
+    position: relative;
+    top: 140px;
+  }
+  &:nth-child(3) {
+    position: relative;
+    top: 34px;
+  }
+  &:nth-child(4) {
+     position: relative;
+     top: 140px;
+   }
+}
+.awards-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 90px;
+}

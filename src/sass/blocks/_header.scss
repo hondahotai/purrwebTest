@@ -1,0 +1,38 @@
+.header {
+  background: #181818;
+}
+
+#scroll.navbar-menu {
+  display: inline-flex;
+  padding: 7px 60px;
+  justify-content: center;
+  align-items: center;
+  gap: 983px;
+  background: #181818;
+  a {
+    text-decoration: none;
+  }
+}
+
+#scroll.navbar_scrolled {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 2000;
+  display: flex;
+  justify-content: space-between;
+  padding: 21px 85px 24px 81px;
+  width: 1500px;
+  margin: 0 auto;
+  background: #181818;
+  animation: cookie2 0.3s ease;
+  @keyframes cookie2 {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}

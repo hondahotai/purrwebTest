@@ -1,0 +1,24 @@
+.tabs {
+  background: var(--secondary-02, #FFAA4C);
+  width: 1440px;
+  margin: 0 auto;
+  .container {
+    display: flex;
+  }
+}
+
+.tabs__item {
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 9px 40px;
+  gap: 10px;
+  cursor: pointer;
+  &.active {
+    border-radius: 20px 20px 0 0;
+    background: #181818;
+    color: #FFF;
+  }
+}

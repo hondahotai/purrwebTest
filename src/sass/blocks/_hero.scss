@@ -1,0 +1,36 @@
+.hero {
+  min-height: 662px;
+  background: #181818;
+  padding: 80px 0 100px 0;
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.hero-text__title {
+  width: 671px;
+}
+.hero-text__desc {
+  width: 534px;
+  color:  #FFF;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  padding: 20px 0 40px 0;
+}
+
+.hero-img {
+  position: relative;
+  svg {
+    position: absolute;
+    right: -77px;
+    top: 25px;
+    z-index: 1;
+  }
+  img {
+    position: relative;
+    z-index: 2;
+  }
+}
